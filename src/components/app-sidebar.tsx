@@ -9,7 +9,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-export function AppSidebar() {
+export function AppSidebar({ className }: { className?: string }) {
   return (
     <Sidebar>
       <SidebarContent>
