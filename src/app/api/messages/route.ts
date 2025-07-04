@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         return new Response("Invalid query", { status: 400 });
     }
 
-    let question = body.query?.trim().replace(/\s+/g, " ");
+    const question = body.query?.trim().replace(/\s+/g, " ");
 
     if (!question) {
         return new Response("Missing 'query' in request body.", {

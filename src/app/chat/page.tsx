@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "../../components/ui/button.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area"
