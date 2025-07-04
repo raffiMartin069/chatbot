@@ -5,7 +5,7 @@ import "../globals.css";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
         <SidebarProvider>
-          <AppSidebar className='relative'  />
+          <AppSidebar  />
           <main className="w-full h-full">
             <SidebarTrigger  />
             {children}
