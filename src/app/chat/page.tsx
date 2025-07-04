@@ -1,7 +1,7 @@
 "use client";
 import React, { FormEvent } from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "../../components/ui/button.tsx";
+import { Button } from "../../components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ArrowUp } from "lucide-react";
 
