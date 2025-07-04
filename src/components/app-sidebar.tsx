@@ -1,5 +1,3 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-
 import {
   Sidebar,
   SidebarContent,
@@ -10,9 +8,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { SidebarTrigger } from "./ui/sidebar.tsx";
 
-export function AppSidebar({ className }: { className?: string }) {
+export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
