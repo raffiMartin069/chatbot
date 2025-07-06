@@ -1,7 +1,7 @@
 import { limiter } from "@/utils/limiter";
 import { NextResponse } from "next/server";
-import { post } from "../../../utils/api_calls/post.tsx";
-import { Environment } from "../../../constants/keys.ts";
+import { post } from "../../../utils/api_calls/post";
+import { Environment } from "../../../constants/keys";
 
 export async function POST(req: Request) {
 
