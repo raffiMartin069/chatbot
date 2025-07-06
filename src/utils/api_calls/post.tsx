@@ -4,7 +4,7 @@ export const post = async (
     data: string | string[] | object,
     url: string,
     apiKey: string
-): Promise<any> => {
+): Promise<unknown> => {
     try {
         const response = await axios.post(
             url,

@@ -18,12 +18,12 @@ function Page() {
     const [question, setQuestion] = React.useState<string>("");
     const [isLoading, setIsLoading] = useState(false);
     const [loadingIndex, setLoadingIndex] = useState(0);
-    const loadingMessages = [
+    const loadingMessages = React.useMemo(() => [
         "Kabayan is currently thinking...",
         "Calculating probabilities...",
         "Gathering relevant information from the depths of the universe...",
         "Using ultra super instinct...",
-    ];
+    ], []);
 
     useEffect(() => {
         if (!isLoading) return;
@@ -47,7 +47,7 @@ function Page() {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [isLoading, loadingIndex]);
+    }, [isLoading, loadingIndex, loadingMessages]);
 
 
 
