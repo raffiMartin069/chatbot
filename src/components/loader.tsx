@@ -6,7 +6,7 @@ export default function Loader() {
 
     const [idx, setIdx] = React.useState(0);
 
-    const loaderItems = typeof LoaderArray === 'function' ? LoaderArray() : LoaderArray;
+    const loaderItems = LoaderArray;
 
     React.useEffect(() => {
         const interval = setInterval(() => {
