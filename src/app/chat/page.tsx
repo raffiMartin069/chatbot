@@ -11,7 +11,6 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 import ROLE from '@/constants/roles';
 import ChatPane from '@/components/chat_pane';
-import { ERROR } from '../../constants/error';
 
 function Page() {
 
