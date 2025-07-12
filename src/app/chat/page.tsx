@@ -50,7 +50,7 @@ function Page() {
     setConvo((prev) =>
       prev.map((msg) =>
         (msg as MessageType & { tempId?: number }).tempId === tempId
-          ? { role: ROLE.ASSISTANT, content: assistantMessage.data.response || ERROR.AI_RESPONSE }
+          ? { role: ROLE.ASSISTANT, content: assistantMessage.data.response ?? ERROR.AI_RESPONSE }
           : msg
       )
     );
