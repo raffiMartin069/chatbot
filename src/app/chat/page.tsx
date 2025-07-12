@@ -44,7 +44,7 @@ function Page() {
       }
     ]);
 
-    const assistantMessage: AxiosResponse = await post("/api/messages", content);
+    const assistantMessage = await post("/api/messages", content);
     
 
     setConvo((prev) =>
