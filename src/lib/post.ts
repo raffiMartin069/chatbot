@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 
-export const post = async (content: string): Promise<AxiosResponse<any> | void> => {
+export const post = async (url: string, content: string): Promise<AxiosResponse<any> | void> => {
 
     if (!content) return;
 
     try {
-        const res: AxiosResponse<any> = await axios.post("/api/messages", {
+        const res: AxiosResponse<any> = await axios.post(url, {
             data: content,
         }, {
             headers: {

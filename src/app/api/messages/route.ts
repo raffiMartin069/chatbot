@@ -1,7 +1,9 @@
 import { limiter } from "@/utils/limiter";
 import { NextResponse } from "next/server";
-import { post } from "../../../utils/api_calls/post";
-import { Environment } from "../../../constants/keys";
+import { post } from "@/utils/api_calls/post";
+import { Environment } from "@/constants/keys";
+import { sanitizeInput } from "@/utils/sanitizeInput";
+import { validateRequestBody } from "@/utils/validateRequestBody";
 
 export async function POST(req: Request) {
 
@@ -14,29 +16,25 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    if (typeof body.data !== "string" || body.data.length > 500) {
+    try {
+        validateRequestBody(body.data);
+    } catch (error: any | unknown) {
         return NextResponse.json(
-            {
-                response:
-                    "Invalid request body. Please provide a valid 'query'.",
-            },
+            { response: error.message },
             { status: 400 },
         );
     }
 
-    const question = body.data?.trim().replace(/\s+/g, " ");
+    const question = body.data?.trim();
 
-    if (!question) {
-        return NextResponse.json(
-            { response: "Please provide a valid question." },
-            { status: 400 },
-        );
-    }
+    const sanitizedData = sanitizeInput(question);
 
     try {
-        // const data = await post(question, Environment.SUPABASE_API_URL, Environment.SUPABASE_API_KEY);
+        const data = await post(sanitizedData, Environment.SUPABASE_API_URL, Environment.SUPABASE_API_KEY);
 
-        const data = "hello i am kabayan ai!"
+        // const data = "Hello! Kamusta ka Kabayan. Ako si Kabayan AI, ang iyong virtual na katulong. Paano kita matutulungan ngayon?";
+
+        console.log("Response from AI:", data);
 
         return NextResponse.json(
             {

@@ -1,20 +1,23 @@
 "use client";
-import React, { useEffect, useOptimistic, useState } from 'react'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/app-sidebar';
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button";
-import { ArrowUp } from 'lucide-react';
-import { ScrollArea } from '@radix-ui/react-scroll-area';
-import { MessageType } from '@/types/mesage-types.';
+import React, { useState } from 'react'
+
 import { post } from '@/lib/post';
 import { AxiosResponse } from 'axios';
+import { ArrowUp } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea"
+import { MessageType } from '@/types/mesage-types.';
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+
 import ROLE from '@/constants/roles';
+import ChatPane from '@/components/chat_pane';
 
 function Page() {
 
   const [convo, setConvo] = useState<MessageType[]>([]);
   const [content, setContent] = useState<string>("");
+
 
   const sendData = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,18 +30,31 @@ function Page() {
       }
     ])
 
-    const assistantMessage: AxiosResponse = await post(content);
-
-    console.log(assistantMessage);
+    const tempId = Date.now();
 
     setConvo((prev) => [
       ...prev,
       {
         role: ROLE.ASSISTANT,
-        content: assistantMessage.data.response || "Sorry, I couldn't process your request."
+        content: "",
+        isLoading: true,
+        tempId
       }
-    ])
+    ]);
+
+    const assistantMessage: AxiosResponse = await post("/api/messages", content);
+    setContent("");
+
+    setConvo((prev) =>
+      prev.map((msg) =>
+        (msg).tempId === tempId
+          ? { role: ROLE.ASSISTANT, content: assistantMessage.data.response }
+          : msg
+      )
+    );
   }
+
+  console.log("convo", convo);
 
   return (
     <SidebarProvider>
@@ -48,39 +64,25 @@ function Page() {
         <div className='grid grid-cols-1 grid-rows-[1fr_auto] h-screen'>
           <div className='flex flex-col overflow-hidden'>
             <div className='flex-1 overflow-hidden'>
-              {
-                <ScrollArea className='h-full overflow-y-auto'>
-                  {
-                    convo.length > 0 ? (
-                      <>
-                        {convo.map((message, idx) =>
-                          message.role === ROLE.CLIENT ? (
-                            <div key={idx} className='border border-slate-100 rounded-xl bg-slate-50 p-5 m-2 items-center justify-start flex'>
-                              <p>{message.content}</p>
-                            </div>
-                          ) : (
-                            <div key={idx} className='border border-sky-100 rounded-xl bg-sky-50 p-5 m-2'>
-                              <p>{message.content}</p>
-                            </div>
-                          )
-                        )}
-                      </>
-                    ) : (
-                      <div className='flex items-center justify-center h-full'>
-                        <p className='text-gray-500'>Start a conversation by typing your message below.</p>
-                      </div>
-                    )
-                  }
-                </ScrollArea>
-              }
+              <ChatPane convo={convo} />
             </div>
           </div>
-          <form onSubmit={sendData}>
-            <div className='mx-1 my-5 relative'>
-              <Textarea className='h-full' placeholder='Type your message here...' rows={4} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)} />
-              <Button className="absolute right-2 top-3 rounded-full"><ArrowUp /></Button>
-            </div>
-          </form>
+          <div className='grid grid-rows-[1fr_auto] p-1 gap-2'>
+            <form onSubmit={sendData}>
+              <div className='relative'>
+                <Textarea className='h-full' placeholder='Type your message here...' rows={4} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)} value={content} />
+                <Button className="absolute right-2 top-3 rounded-full"><ArrowUp /></Button>
+              </div>
+            </form>
+            <footer className='p-2'>
+              <div className='text-center text-gray-500 text-sm h-full'>
+                <div>© {new Date().getFullYear()} Kabayan AI. All rights reserved.</div>
+                <div>
+                  Follow me @ <a href="https://github.com/raffiMartin069" className='text-blue-500 hover:underline'>GitHub</a>
+                </div>
+              </div>
+            </footer>
+          </div>
         </div>
       </main>
     </SidebarProvider>
