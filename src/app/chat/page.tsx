@@ -11,6 +11,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 import ROLE from '@/constants/roles';
 import ChatPane from '@/components/chat_pane';
+import { ERROR } from '../../constants/error';
 
 function Page() {
 
@@ -49,7 +50,7 @@ function Page() {
     setConvo((prev) =>
       prev.map((msg) =>
         (msg as MessageType & { tempId?: number }).tempId === tempId
-          ? { role: ROLE.ASSISTANT, content: assistantMessage.data.response }
+          ? { role: ROLE.ASSISTANT, content: assistantMessage.data.response || ERROR.AI_RESPONSE }
           : msg
       )
     );
