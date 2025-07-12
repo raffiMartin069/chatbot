@@ -10,7 +10,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { AssistantMessageResponse } from '../../types/assistant-data';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
-import ROLE from '../../constants/roles';
+import { ROLE } from '../../constants/roles';
 import ChatPane from '@/components/chat_pane';
 
 
