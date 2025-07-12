@@ -2,6 +2,7 @@
 import React from 'react'
 
 import { post } from '@/lib/post';
+import { AxiosResponse } from 'axios';
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea"
@@ -12,6 +13,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 import ROLE from '@/constants/roles';
 import ChatPane from '@/components/chat_pane';
+
 
 function Page() {
 
