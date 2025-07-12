@@ -1,5 +1,4 @@
-// utils/rateLimit.ts
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_WINDOW = 120 * 1000;
 const MAX_REQUESTS = 5;
 
 const ipRequestCounts = new Map<string, { count: number; timestamp: number }>();
@@ -10,14 +9,14 @@ export function limiter(ip: string): boolean {
 
     if (!entry || now - entry.timestamp > RATE_LIMIT_WINDOW) {
         ipRequestCounts.set(ip, { count: 1, timestamp: now });
-        return false; // allowed
+        return false;
     }
 
     if (entry.count >= MAX_REQUESTS) {
-        return true; // blocked
+        return true;
     }
 
     entry.count++;
     ipRequestCounts.set(ip, entry);
-    return false; // allowed
+    return false;
 }
