@@ -2,7 +2,6 @@
 import React from 'react'
 
 import { post } from '@/lib/post';
-import { AxiosResponse } from 'axios';
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea"
@@ -46,7 +45,7 @@ function Page() {
       }
     ]);
 
-    const assistantMessage: AxiosResponse<AssistantMessageResponse> = await post("/api/messages", content);
+    const assistantMessage = await post<AssistantMessageResponse>("/api/messages", content)
 
 
     if (!assistantMessage?.data?.response) return;

@@ -1,11 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 
-export const post = async (url: string, content: string) => {
-
+export const post = async <T = unknown>(url: string, content: string): Promise<T | undefined> => {
     if (!content) return;
 
     try {
-        const res: AxiosResponse<unknown> = await axios.post(url, {
+        const res: AxiosResponse<T> = await axios.post(url, {
             data: content,
         }, {
             headers: {
@@ -18,7 +17,7 @@ export const post = async (url: string, content: string) => {
             return;
         }
 
-        return res;
+        return res.data;
     } catch (error) {
         console.error("Error posting message:", error);
     }

@@ -1,5 +1,4 @@
 export type AssistantMessageResponse = {
-    data: {
-        response: string;
-    };
+    response: string;
 };
+
