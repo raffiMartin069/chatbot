@@ -5,7 +5,7 @@ import { Loader as LoaderArray } from '@/constants/chat_load';
 export default function Loader() {
 
     const [idx, setIdx] = React.useState(0);
-    
+
     const loaderItems = typeof LoaderArray === 'function' ? LoaderArray() : LoaderArray;
 
     React.useEffect(() => {

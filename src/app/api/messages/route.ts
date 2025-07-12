@@ -34,8 +34,6 @@ export async function POST(req: Request) {
 
         // const data = "Hello! Kamusta ka Kabayan. Ako si Kabayan AI, ang iyong virtual na katulong. Paano kita matutulungan ngayon?";
 
-        console.log("Response from AI:", data);
-
         return NextResponse.json(
             {
                 response: data,

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React from 'react'
 
 import { post } from '@/lib/post';
 import { AxiosResponse } from 'axios';
@@ -15,8 +15,8 @@ import ChatPane from '@/components/chat_pane';
 
 function Page() {
 
-  const [convo, setConvo] = useState<MessageType[]>([]);
-  const [content, setContent] = useState<string>("");
+  const [convo, setConvo] = React.useState<MessageType[]>([]);
+  const [content, setContent] = React.useState<string>("");
 
 
   const sendData = async (e: React.FormEvent) => {
@@ -53,8 +53,6 @@ function Page() {
       )
     );
   }
-
-  console.log("convo", convo);
 
   return (
     <SidebarProvider>
