@@ -31,7 +31,7 @@ function ChatPane({ convo }: { convo: MessageType[] }) {
                     <ScrollArea className='h-full overflow-y-auto' ref={scrollRef}>
                         {convo.map((message, idx) => {
                             const isClient = message.role === ROLE.CLIENT;
-                            const isLoading = (message as string).isLoading;
+                            const isLoading = message.isLoading;
                             return (
                                 <div key={idx} className={`border rounded-xl p-5 m-2 ${isClient ? "border-slate-100 bg-slate-50 flex justify-end" : "border-sky-100 bg-sky-50"}`}>
                                     {isLoading ? (<Loader />) : (<div className='whitespace-pre-wrap break-words overflow-x-hidden'>
