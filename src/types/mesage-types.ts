@@ -1,7 +1,5 @@
-import ROLE from '../constants/roles';
-
 export type MessageType = {
-    role: ROLE.CLIENT | ROLE.ASSISTANT;
+    role: "client" | "assistant";
     content: string;
     isLoading?: boolean;
 }
