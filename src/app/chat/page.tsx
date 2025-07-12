@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea"
 import { MessageType } from '../../types/mesage-types';
 import { AppSidebar } from '@/components/app-sidebar';
+import { AssistantMessageResponse } from '../../types/assistant-data';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 import ROLE from '@/constants/roles';
@@ -43,7 +44,7 @@ function Page() {
       }
     ]);
 
-    const assistantMessage = await post("/api/messages", content);
+    const assistantMessage: AssistantMessageResponse | undefined = await post("/api/messages", content);
 
 
     if (!assistantMessage?.data?.response) return;
