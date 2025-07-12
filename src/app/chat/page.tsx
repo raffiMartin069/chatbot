@@ -30,6 +30,8 @@ function Page() {
       }
     ])
 
+    setContent("");
+
     const tempId = Date.now();
 
     setConvo((prev) => [
@@ -43,7 +45,7 @@ function Page() {
     ]);
 
     const assistantMessage: AxiosResponse = await post("/api/messages", content);
-    setContent("");
+    
 
     setConvo((prev) =>
       prev.map((msg) =>
