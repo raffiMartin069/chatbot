@@ -2,7 +2,6 @@
 import React from 'react'
 
 import { post } from '@/lib/post';
-import { AxiosResponse } from 'axios';
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea"
