@@ -1,6 +1,4 @@
-const ROLE = {
-    CLIENT: "client",
-    ASSISTANT: "assistant",
-}
-
-export default ROLE;
+export const ROLE = {
+  CLIENT: "client",
+  ASSISTANT: "assistant",
+} as const;
