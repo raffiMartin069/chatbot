@@ -4,7 +4,7 @@ import React from 'react'
 import { MessageType } from '@/types/mesage-types';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
-import { ROLE } from '../../constants/roles';
+import { ROLE } from '../constants/roles';
 import Loader from '@/components/loader';
 
 function ChatPane({ convo }: { convo: MessageType[] }) {
