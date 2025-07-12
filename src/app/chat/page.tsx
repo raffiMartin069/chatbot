@@ -48,7 +48,7 @@ function Page() {
     const assistantMessage = await post<AssistantMessageResponse>("/api/messages", content)
 
 
-    if (!assistantMessage?.data?.response) return;
+    if (!assistantMessage?.response) return;
 
     setConvo((prev) =>
       prev.map((msg) =>
