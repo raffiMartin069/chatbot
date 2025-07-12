@@ -18,9 +18,12 @@ export async function POST(req: Request) {
 
     try {
         validateRequestBody(body.data);
-    } catch (error: any | unknown) {
+    } catch (error: unknown) {
+        const errorMessage = typeof error === "object" && error !== null && "message" in error
+            ? (error as { message: string }).message
+            : "Invalid request body";
         return NextResponse.json(
-            { response: error.message },
+            { response: errorMessage },
             { status: 400 },
         );
     }
