@@ -6,7 +6,7 @@ import { AxiosResponse } from 'axios';
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea"
-import { MessageType } from '@/types/mesage-types.';
+import { MessageType } from '../../types/mesage-types';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
