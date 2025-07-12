@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    if (typeof body.query !== "string" || body.query.length > 500) {
+    if (typeof body.data !== "string" || body.data.length > 500) {
         return NextResponse.json(
             {
                 response:
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         );
     }
 
-    const question = body.query?.trim().replace(/\s+/g, " ");
+    const question = body.data?.trim().replace(/\s+/g, " ");
 
     if (!question) {
         return NextResponse.json(
@@ -34,9 +34,9 @@ export async function POST(req: Request) {
     }
 
     try {
-        const data = await post(question, Environment.SUPABASE_API_URL, Environment.SUPABASE_API_KEY);
+        // const data = await post(question, Environment.SUPABASE_API_URL, Environment.SUPABASE_API_KEY);
 
-        // const data = "hello i am kabayan ai!"
+        const data = "hello i am kabayan ai!"
 
         return NextResponse.json(
             {
