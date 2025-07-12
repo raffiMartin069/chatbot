@@ -1,4 +1,4 @@
-import ROLE from "@/constants/roles"
+import ROLE from '../constants/roles';
 
 export type MessageType = {
     role: ROLE.CLIENT | ROLE.ASSISTANT;
