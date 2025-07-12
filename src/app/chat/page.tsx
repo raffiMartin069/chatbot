@@ -44,7 +44,7 @@ function Page() {
       }
     ]);
 
-    const assistantMessage: AssistantMessageResponse | undefined = await post("/api/messages", content);
+    const assistantMessage: AxiosResponse<AssistantMessageResponse> = await post("/api/messages", content);
 
 
     if (!assistantMessage?.data?.response) return;
