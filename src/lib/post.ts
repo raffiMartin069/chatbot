@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-export const post = async (url: string, content: string): Promise<AxiosResponse<unknown> | void> => {
+export const post = async (url: string, content: string): Promise<AxiosResponse<unknown> | undefined> => {
 
     if (!content) return;
 
